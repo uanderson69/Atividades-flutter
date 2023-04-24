@@ -4,9 +4,27 @@ main() {
   runApp(ComponenteInicial());
 }
 
-class ComponenteInicial extends StatelessWidget {
+class ComponenteInicial extends StatefulWidget {
+  @override
+  State<ComponenteInicial> createState() => _ComponenteInicialState();
+}
+
+class _ComponenteInicialState extends State<ComponenteInicial> {
+  var contador = 0;
+
+  final perguntas = [
+    "Sua cor favorita",
+    "Sua rede social favorita",
+    "Seu alimento favorito",
+    "Seu animal favorito"
+  ];
+
   void eventobotao() {
-    print("Clicou");
+    setState(() {
+      contador:
+      contador++;
+    });
+    print(contador);
   }
 
   Widget build(BuildContext context) {
@@ -18,23 +36,21 @@ class ComponenteInicial extends StatelessWidget {
             ),
             body: Column(
               children: [
+                Text(perguntas[contador]),
                 ElevatedButton(
                   onPressed: eventobotao,
-                  child: Text("Meu botao"),
+                  child: Text("Clique"),
                 ),
                 ElevatedButton(
-                  onPressed: eventobotao,
-                  child: Text("Meu botao"),
+                  onPressed: () {
+                    print("Outra função");
+                  },
+                  child: Text("Clique"),
                 ),
                 ElevatedButton(
-                  onPressed: eventobotao,
+                  onPressed: () => print("Função arrow"),
                   child: Text("Meu botao"),
                 ),
-                Column(children: <Widget>[
-                  Text('Aprendendo'),
-                  Text('Programação'),
-                  Text('Flutter'),
-                ]),
               ],
             )));
   }
